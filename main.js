@@ -25,7 +25,8 @@ renderer.render(scene, camera);
 // Background
 const spaceTexture = new THREE.TextureLoader().load("/space.jpg");
 scene.background = spaceTexture;
-function wave() {
+
+function satelite() {
   const geometry = new THREE.TorusGeometry(200, 200, 200, 200);
   const material = new THREE.PointsMaterial({
     color: 0xffffff,
@@ -39,14 +40,12 @@ function wave() {
     requestAnimationFrame(animate);
     orbit.rotation.z += 0.01;
 
-    // controls.update();
-
     renderer.render(scene, camera);
   }
 
   animate();
 }
-wave();
+satelite();
 
 // Planet
 function Planet() {
@@ -64,14 +63,6 @@ pointLight.position.set(5, 5, 5);
 
 const ambientLight = new THREE.AmbientLight(0xffffff);
 scene.add(pointLight, ambientLight);
-
-// Helpers
-
-// const lightHelper = new THREE.PointLightHelper(pointLight)
-// const gridHelper = new THREE.GridHelper(200, 50);
-// scene.add(lightHelper, gridHelper)
-
-// const controls = new OrbitControls(camera, renderer.domElement);
 
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24);
@@ -99,6 +90,37 @@ function moveCamera() {
 
 document.body.onscroll = moveCamera;
 moveCamera();
+
+function updatePlaneSize() {
+  var aspectRatio = window.innerWidth / window.innerHeight;
+  var planeWidth, planeHeight;
+
+  if (aspectRatio > 1) {
+    planeWidth = aspectRatio;
+    planeHeight = 1;
+  } else {
+    planeWidth = 1;
+    planeHeight = 1 / aspectRatio;
+  }
+
+  spaceTexture.scale.set(planeWidth, planeHeight, 1);
+}
+
+function onWindowResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  updatePlaneSize();
+}
+
+window.addEventListener(
+  "resize",
+  () => {
+    onWindowResize;
+    renderer.render(scene, camera);
+  },
+  false
+);
 
 // Audio
 const music = document.getElementById("audio");

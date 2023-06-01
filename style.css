@@ -20,6 +20,7 @@ canvas {
   position: fixed;
   width: 100vw;
   height: 100vh;
+  object-fit: cover;
 }
 .wrapper {
   position: absolute;
@@ -423,13 +424,12 @@ footer {
   margin-top: 200px;
   padding-top: 200px;
   color: aliceblue;
-}
-footer {
   margin: 50px;
   display: flex;
   justify-content: space-around;
   color: aliceblue;
 }
+
 footer .fleft button {
   text-decoration: none;
   font-size: 18px;
@@ -484,4 +484,31 @@ footer a:after {
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: width, left;
+}
+@media (max-width: 600px) {
+  .content {
+    width: 100%;
+    margin: 0;
+  }
+  .contenta {
+    width: 100%;
+    margin: 100px;
+  }
+  .contentb {
+    width: 100%;
+    margin: 100px;
+  }
+  .contenta h1 {
+    text-align: center;
+  }
+  .contentb h1 {
+    text-align: center;
+  }
+
+  footer {
+    height: 30vh;
+    flex-direction: column;
+    margin-top: 20px;
+    justify-content: space-around;
+  }
 }
