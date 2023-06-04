@@ -18,8 +18,10 @@ body {
 }
 canvas {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
   object-fit: cover;
 }
 .wrapper {
@@ -498,13 +500,6 @@ footer a:after {
     width: 100%;
     margin: 100px;
   }
-  .contenta h1 {
-    text-align: center;
-  }
-  .contentb h1 {
-    text-align: center;
-  }
-
   footer {
     height: 30vh;
     flex-direction: column;
